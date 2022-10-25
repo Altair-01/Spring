@@ -19,7 +19,8 @@ public class BienConfig {
                     300000,
                     3,
                     4,
-                    300.0
+                    300.0,
+                   "http://url.com"
             );
             Bien maison2 =  new Bien (
                     "Maison en bord de mer",
@@ -28,7 +29,8 @@ public class BienConfig {
                     300000,
                     3,
                     4,
-                    300.0
+                    300.0,
+                    "http://url.com"
             );
             repository.saveAll(
                     List.of(maison1,maison2)
