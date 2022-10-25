@@ -24,6 +24,7 @@ public class Bien {
     private Integer bathroom;
     private Integer bedroom;
     private Double area;
+    private String url;
 
     public Bien() {
     }
@@ -35,7 +36,8 @@ public class Bien {
                 Integer price,
                 Integer bathroom,
                 Integer bedroom,
-                Double area) {
+                Double area,
+                String url) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -44,6 +46,7 @@ public class Bien {
         this.bathroom = bathroom;
         this.bedroom = bedroom;
         this.area = area;
+        this.url = url;
     }
 
     public Bien(String name,
@@ -52,7 +55,8 @@ public class Bien {
                 Integer price,
                 Integer bathroom,
                 Integer bedroom,
-                Double area) {
+                Double area,
+                String url) {
         this.name = name;
         this.address = address;
         this.description = description;
@@ -60,6 +64,7 @@ public class Bien {
         this.bathroom = bathroom;
         this.bedroom = bedroom;
         this.area = area;
+        this.url = url;
     }
 
     public Long getId() {
@@ -125,6 +130,13 @@ public class Bien {
     public void setArea(Double area) {
         this.area = area;
     }
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     @Override
     public String toString() {
@@ -137,6 +149,7 @@ public class Bien {
                 ", bathroom=" + bathroom +
                 ", bedroom=" + bedroom +
                 ", area=" + area +
+                ", url=" + url +
                 '}';
     }
 }
