@@ -1,10 +1,12 @@
-package com.example.demo.bien;
+package com.example.demo.Bien;
+
+import com.example.demo.Owner.Owner;
 
 import javax.persistence.*;
 
 
 @Entity
-@Table
+@Table(name = "Bien")
 public class Bien {
     @Id
     @SequenceGenerator(
@@ -16,15 +18,73 @@ public class Bien {
             strategy = GenerationType.IDENTITY,
             generator = "bien_sequence"
     )
+    @Column(
+            name="id",
+            updatable = false
+    )
     private Long id;
+    @Column(
+            name="name",
+            nullable = false,
+            columnDefinition = "TEXT"
+
+    )
     private String name;
+
+    @Column(
+            name="address",
+            nullable = false,
+            columnDefinition = "TEXT"
+
+    )
     private String address;
+
+    @Column(
+            name="description",
+            nullable = false,
+            columnDefinition = "TEXT"
+
+    )
     private String description;
+
+    @Column(
+            name="price",
+            nullable = false
+    )
+
     private Integer price;
+
+    @Column(
+            name="bathroom",
+            nullable = false
+    )
     private Integer bathroom;
+
+    @Column(
+            name="bedroom",
+            nullable = false
+    )
     private Integer bedroom;
+
+    @Column(
+            name="area",
+            nullable = false
+    )
     private Double area;
+
+    @Column(
+            name="url",
+            nullable = false,
+            columnDefinition = "TEXT"
+
+    )
     private String url;
+
+    //J'ajoute les relations entre les entités
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
+
 
     public Bien() {
     }
@@ -37,7 +97,8 @@ public class Bien {
                 Integer bathroom,
                 Integer bedroom,
                 Double area,
-                String url) {
+                String url,
+                Owner owner) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -47,6 +108,7 @@ public class Bien {
         this.bedroom = bedroom;
         this.area = area;
         this.url = url;
+        this.owner = owner;
     }
 
     public Bien(String name,
@@ -56,7 +118,8 @@ public class Bien {
                 Integer bathroom,
                 Integer bedroom,
                 Double area,
-                String url) {
+                String url,
+                Owner owner) {
         this.name = name;
         this.address = address;
         this.description = description;
@@ -65,6 +128,7 @@ public class Bien {
         this.bedroom = bedroom;
         this.area = area;
         this.url = url;
+        this.owner = owner;
     }
 
     public Long getId() {
@@ -138,6 +202,14 @@ public class Bien {
         this.url = url;
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
     @Override
     public String toString() {
         return "Bien{" +
@@ -149,7 +221,8 @@ public class Bien {
                 ", bathroom=" + bathroom +
                 ", bedroom=" + bedroom +
                 ", area=" + area +
-                ", url=" + url +
+                ", url='" + url + '\'' +
+                ", owner=" + owner +
                 '}';
     }
 }

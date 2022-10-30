@@ -1,11 +1,12 @@
-package com.example.demo.bien;
+package com.example.demo.Bien;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+//Pour angular @CrossOrigin
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "api/v1/bien")
 public class BienController {
@@ -21,6 +22,10 @@ public class BienController {
         return bienService.getBiens();
     }
 
+    @GetMapping("/{id}")
+    public Optional<Bien> findBienById(@PathVariable("id") Long id){
+        return bienService.findBienById(id);
+    }
     @PostMapping
     public void registerNewBien(@RequestBody Bien bien){
         bienService.addNewBien(bien);

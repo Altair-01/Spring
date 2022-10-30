@@ -1,4 +1,4 @@
-package com.example.demo.bien;
+package com.example.demo.Bien;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +22,9 @@ public class BienService {
 
     }
 
+    public Optional<Bien> findBienById(Long id){
+        return bienRepository.findBienById(id);
+    }
     public void addNewBien(Bien bien) {
         Optional<Bien> bienOptional = bienRepository.findBienByName(bien.getName());
         if(bienOptional.isPresent()){

@@ -8,5 +8,6 @@ export interface Bien {
     bedroom:number;
     area:any;
     url:string;
+    owner:any;
     }
     
