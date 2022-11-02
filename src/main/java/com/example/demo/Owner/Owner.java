@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "Owner",
 uniqueConstraints = {
-        @UniqueConstraint(name = "owner_email_unique", columnNames = "email")
+        @UniqueConstraint(name = "owner_number_unique", columnNames = "telephone")
 })
 public class Owner {
 
@@ -24,7 +24,7 @@ public class Owner {
             generator = "owner_sequence"
     )
     @Column(
-            name="id",
+            name="owner_id",
             updatable = false
     )
     private Long id;
@@ -64,20 +64,22 @@ public class Owner {
     public Owner() {
     }
 
-    public Owner(Long id, String firstName, String lastName, String email, String password, Integer telephone) {
+    public Owner(Long id, String firstName, String lastName, String email, String password, Integer telephone, List<Bien> biens) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.telephone = telephone;
+        this.biens = biens;
     }
-    public Owner( String firstName, String lastName, String email, String password, Integer telephone) {
+    public Owner( String firstName, String lastName, String email, String password, Integer telephone, List<Bien> biens) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.telephone = telephone;
+        this.biens = biens;
     }
 
     public Long getId() {
@@ -128,7 +130,17 @@ public class Owner {
         this.telephone = telephone;
     }
 
+    public List<Bien> getBiens() {
+        return biens;
+    }
 
+    public void setBiens(List<Bien> biens) {
+        this.biens = biens;
+    }
+
+    public void addBien(Bien bien){
+        biens.add(bien);
+    }
 
     @Override
     public String toString() {
@@ -139,6 +151,7 @@ public class Owner {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", telephone=" + telephone +
+                ", biens=" + biens +
                 '}';
     }
 }

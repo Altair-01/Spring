@@ -21,16 +21,20 @@ public class BienService {
         return bienRepository.findAll();
 
     }
+    public Bien getBien(Long id){
+        return bienRepository.findById(id).orElseThrow(() ->
+                new RuntimeException());
+    }
 
     public Optional<Bien> findBienById(Long id){
         return bienRepository.findBienById(id);
     }
-    public void addNewBien(Bien bien) {
-        Optional<Bien> bienOptional = bienRepository.findBienByName(bien.getName());
+    public Bien addBien(Bien bien) {
+        Optional<Bien> bienOptional = bienRepository.findBienByTitle(bien.getTitle());
         if(bienOptional.isPresent()){
             throw new IllegalStateException("Le bien avec ce nom existe");
         }
-        bienRepository.save(bien);
+        return bienRepository.save(bien);
     }
 
     public void deleteBien( Long bienId){
@@ -42,12 +46,12 @@ public class BienService {
     }
 
     @Transactional
-    public void updateBien(Long bienId, String name, Integer price) {
-        Bien bien = bienRepository.findById(bienId)
+    public void updateBien(Long id, String name, Integer price) {
+        Bien bien = bienRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("" +
-                        "Ce bien avec id:"+bienId+"n'existe pas"));
-        if (name!= null && name.length() > 0 && !Objects.equals(bien.getName(), name)) {
-            bien.setName(name);
+                        "Ce bien avec id:"+id+"n'existe pas"));
+        if (name!= null && name.length() > 0 && !Objects.equals(bien.getTitle(), name)) {
+            bien.setTitle(name);
         }
         if (price!= null  && !Objects.equals(bien.getPrice(), price)) {
             bien.setPrice(price);

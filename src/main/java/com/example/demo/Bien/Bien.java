@@ -1,8 +1,10 @@
 package com.example.demo.Bien;
 
 import com.example.demo.Owner.Owner;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -19,17 +21,17 @@ public class Bien {
             generator = "bien_sequence"
     )
     @Column(
-            name="id",
+            name="bien_id",
             updatable = false
     )
     private Long id;
     @Column(
-            name="name",
+            name="title",
             nullable = false,
             columnDefinition = "TEXT"
 
     )
-    private String name;
+    private String title;
 
     @Column(
             name="address",
@@ -81,8 +83,8 @@ public class Bien {
     private String url;
 
     //J'ajoute les relations entre les entités
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "owner_id")
+    @ManyToOne(optional = false,cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id",referencedColumnName = "owner_id")
     private Owner owner;
 
 
@@ -90,17 +92,16 @@ public class Bien {
     }
 
     public Bien(Long id,
-                String name,
+                String title,
                 String address,
                 String description,
                 Integer price,
                 Integer bathroom,
                 Integer bedroom,
                 Double area,
-                String url,
-                Owner owner) {
+                String url) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.address = address;
         this.description = description;
         this.price = price;
@@ -108,19 +109,17 @@ public class Bien {
         this.bedroom = bedroom;
         this.area = area;
         this.url = url;
-        this.owner = owner;
     }
 
-    public Bien(String name,
+    public Bien(String title,
                 String address,
                 String description,
                 Integer price,
                 Integer bathroom,
                 Integer bedroom,
                 Double area,
-                String url,
-                Owner owner) {
-        this.name = name;
+                String url) {
+        this.title = title;
         this.address = address;
         this.description = description;
         this.price = price;
@@ -128,7 +127,6 @@ public class Bien {
         this.bedroom = bedroom;
         this.area = area;
         this.url = url;
-        this.owner = owner;
     }
 
     public Long getId() {
@@ -139,12 +137,12 @@ public class Bien {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAddress() {
@@ -202,19 +200,12 @@ public class Bien {
         this.url = url;
     }
 
-    public Owner getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
 
     @Override
     public String toString() {
         return "Bien{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 ", address='" + address + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
@@ -222,7 +213,6 @@ public class Bien {
                 ", bedroom=" + bedroom +
                 ", area=" + area +
                 ", url='" + url + '\'' +
-                ", owner=" + owner +
                 '}';
     }
 }
