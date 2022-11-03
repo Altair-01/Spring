@@ -1,10 +1,14 @@
-package com.example.demo.bien;
+package com.example.demo.Bien;
+
+import com.example.demo.Owner.Owner;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
-@Table
+@Table(name = "Bien")
 public class Bien {
     @Id
     @SequenceGenerator(
@@ -16,30 +20,79 @@ public class Bien {
             strategy = GenerationType.IDENTITY,
             generator = "bien_sequence"
     )
+    @Column(
+            name="bien_id",
+            updatable = false
+    )
     private Long id;
-    private String name;
+    @Column(
+            name="title",
+            nullable = false,
+            columnDefinition = "TEXT"
+
+    )
+    private String title;
+
+    @Column(
+            name="address",
+            nullable = false,
+            columnDefinition = "TEXT"
+
+    )
     private String address;
+
+    @Column(
+            name="description",
+            nullable = false,
+            columnDefinition = "TEXT"
+
+    )
     private String description;
+
+    @Column(
+            name="price",
+            nullable = false
+    )
+
     private Integer price;
+
+    @Column(
+            name="bathroom",
+            nullable = false
+    )
     private Integer bathroom;
+
+    @Column(
+            name="bedroom",
+            nullable = false
+    )
     private Integer bedroom;
+
+    @Column(
+            name="area",
+            nullable = false
+    )
     private Double area;
+
+    @Column(
+            name="url",
+            nullable = false,
+            columnDefinition = "TEXT"
+
+    )
     private String url;
+
+    //J'ajoute les relations entre les entités
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id",referencedColumnName = "owner_id")
+    private Owner owner;
+
 
     public Bien() {
     }
-
-    public Bien(Long id,
-                String name,
-                String address,
-                String description,
-                Integer price,
-                Integer bathroom,
-                Integer bedroom,
-                Double area,
-                String url) {
+    public Bien(Long id, String title, String address, String description, Integer price, Integer bathroom, Integer bedroom, Double area, String url,Owner owner) {
         this.id = id;
-        this.name = name;
+        this.title = title;
         this.address = address;
         this.description = description;
         this.price = price;
@@ -47,17 +100,15 @@ public class Bien {
         this.bedroom = bedroom;
         this.area = area;
         this.url = url;
+        this.owner = owner;
+
     }
 
-    public Bien(String name,
-                String address,
-                String description,
-                Integer price,
-                Integer bathroom,
-                Integer bedroom,
-                Double area,
-                String url) {
-        this.name = name;
+
+
+
+    public Bien(String title, String address, String description, Integer price, Integer bathroom, Integer bedroom, Double area, String url, Owner owner) {
+        this.title = title;
         this.address = address;
         this.description = description;
         this.price = price;
@@ -65,7 +116,12 @@ public class Bien {
         this.bedroom = bedroom;
         this.area = area;
         this.url = url;
+        this.owner = owner;
+
     }
+
+
+
 
     public Long getId() {
         return id;
@@ -75,12 +131,12 @@ public class Bien {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAddress() {
@@ -137,19 +193,29 @@ public class Bien {
     public void setUrl(String url) {
         this.url = url;
     }
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+
 
     @Override
     public String toString() {
         return "Bien{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
                 ", address='" + address + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", bathroom=" + bathroom +
                 ", bedroom=" + bedroom +
                 ", area=" + area +
-                ", url=" + url +
+                ", url='" + url + '\'' +
+                "owner=" + owner +
                 '}';
     }
 }
