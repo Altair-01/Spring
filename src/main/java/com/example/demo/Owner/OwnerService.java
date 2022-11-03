@@ -49,12 +49,12 @@ public class OwnerService {
         ownerRepository.save(owner);
     }
 
-    public Owner addBienToOwner(Long bienId, Long ownerId){
+    /*public Owner addBienToOwner(Long bienId, Long ownerId){
         Owner owner = getOwner(ownerId);
         Bien bien = bienService.getBien(bienId);
         owner.addBien(bien);
         return owner;
-    }
+    }*/
     @Transactional
     public void updateOwner(Long id, Integer telephone) {
         Owner owner = ownerRepository.findById(id)

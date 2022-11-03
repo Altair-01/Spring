@@ -1,5 +1,6 @@
 package com.example.demo.Bien;
 
+import com.example.demo.Owner.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,6 @@ import java.util.Optional;
 @Service
 public class BienService {
     private final BienRepository bienRepository;
-
     @Autowired
     public BienService(BienRepository bienRepository) {
         this.bienRepository = bienRepository;
@@ -29,12 +29,17 @@ public class BienService {
     public Optional<Bien> findBienById(Long id){
         return bienRepository.findBienById(id);
     }
-    public Bien addBien(Bien bien) {
+    public void addBien(Bien bien) {
         Optional<Bien> bienOptional = bienRepository.findBienByTitle(bien.getTitle());
         if(bienOptional.isPresent()){
             throw new IllegalStateException("Le bien avec ce nom existe");
         }
-        return bienRepository.save(bien);
+
+        if (bien.getOwner().equals(null)){
+            throw new IllegalStateException("IL EST VIDE");
+        }
+        bienRepository.save(bien);
+
     }
 
     public void deleteBien( Long bienId){

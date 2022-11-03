@@ -64,22 +64,20 @@ public class Owner {
     public Owner() {
     }
 
-    public Owner(Long id, String firstName, String lastName, String email, String password, Integer telephone, List<Bien> biens) {
+    public Owner(Long id, String firstName, String lastName, String email, String password, Integer telephone) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.telephone = telephone;
-        this.biens = biens;
     }
-    public Owner( String firstName, String lastName, String email, String password, Integer telephone, List<Bien> biens) {
+    public Owner( String firstName, String lastName, String email, String password, Integer telephone) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.telephone = telephone;
-        this.biens = biens;
     }
 
     public Long getId() {
@@ -130,17 +128,6 @@ public class Owner {
         this.telephone = telephone;
     }
 
-    public List<Bien> getBiens() {
-        return biens;
-    }
-
-    public void setBiens(List<Bien> biens) {
-        this.biens = biens;
-    }
-
-    public void addBien(Bien bien){
-        biens.add(bien);
-    }
 
     @Override
     public String toString() {
@@ -151,7 +138,6 @@ public class Owner {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", telephone=" + telephone +
-                ", biens=" + biens +
                 '}';
     }
 }

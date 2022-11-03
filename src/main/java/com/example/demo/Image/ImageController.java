@@ -16,6 +16,7 @@ public class ImageController {
     private StorageService service;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<?> uploadImage(@RequestParam("image")MultipartFile file) throws IOException{
         String uploadImage = service.uploadImage((file));
         return ResponseEntity
@@ -24,6 +25,7 @@ public class ImageController {
     }
 
    @GetMapping("/{fileName}")
+   @ResponseStatus(HttpStatus.OK)
    public ResponseEntity<?> downloadImage(@PathVariable String fileName){
         byte[] imageData= service.downloadImage(fileName);
         return ResponseEntity

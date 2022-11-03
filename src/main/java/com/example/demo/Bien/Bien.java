@@ -83,23 +83,14 @@ public class Bien {
     private String url;
 
     //J'ajoute les relations entre les entités
-    @ManyToOne(optional = false,cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id",referencedColumnName = "owner_id")
     private Owner owner;
 
 
     public Bien() {
     }
-
-    public Bien(Long id,
-                String title,
-                String address,
-                String description,
-                Integer price,
-                Integer bathroom,
-                Integer bedroom,
-                Double area,
-                String url) {
+    public Bien(Long id, String title, String address, String description, Integer price, Integer bathroom, Integer bedroom, Double area, String url,Owner owner) {
         this.id = id;
         this.title = title;
         this.address = address;
@@ -109,16 +100,14 @@ public class Bien {
         this.bedroom = bedroom;
         this.area = area;
         this.url = url;
+        this.owner = owner;
+
     }
 
-    public Bien(String title,
-                String address,
-                String description,
-                Integer price,
-                Integer bathroom,
-                Integer bedroom,
-                Double area,
-                String url) {
+
+
+
+    public Bien(String title, String address, String description, Integer price, Integer bathroom, Integer bedroom, Double area, String url, Owner owner) {
         this.title = title;
         this.address = address;
         this.description = description;
@@ -127,7 +116,12 @@ public class Bien {
         this.bedroom = bedroom;
         this.area = area;
         this.url = url;
+        this.owner = owner;
+
     }
+
+
+
 
     public Long getId() {
         return id;
@@ -199,6 +193,14 @@ public class Bien {
     public void setUrl(String url) {
         this.url = url;
     }
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
 
 
     @Override
@@ -213,6 +215,7 @@ public class Bien {
                 ", bedroom=" + bedroom +
                 ", area=" + area +
                 ", url='" + url + '\'' +
+                "owner=" + owner +
                 '}';
     }
 }
