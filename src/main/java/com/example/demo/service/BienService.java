@@ -1,6 +1,7 @@
-package com.example.demo.Bien;
+package com.example.demo.service;
 
-import com.example.demo.Owner.OwnerService;
+import com.example.demo.entities.Bien;
+import com.example.demo.repositories.BienRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,10 @@ public class BienService {
     public Optional<Bien> findBienById(Long id){
         return bienRepository.findBienById(id);
     }
+
+    public Optional<Bien> getBienByTitle(String title) {return bienRepository.getBienByTitle(title);}
     public void addBien(Bien bien) {
-        Optional<Bien> bienOptional = bienRepository.findBienByTitle(bien.getTitle());
+        Optional<Bien> bienOptional = bienRepository.getBienByTitle(bien.getTitle());
         if(bienOptional.isPresent()){
             throw new IllegalStateException("Le bien avec ce nom existe");
         }
@@ -51,12 +54,15 @@ public class BienService {
     }
 
     @Transactional
-    public void updateBien(Long id, String name, Integer price) {
+    public void updateBien(Long id, String title,String description, Integer price) {
         Bien bien = bienRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("" +
                         "Ce bien avec id:"+id+"n'existe pas"));
-        if (name!= null && name.length() > 0 && !Objects.equals(bien.getTitle(), name)) {
-            bien.setTitle(name);
+        if (title!= null && title.length() > 0 && !Objects.equals(bien.getTitle(), title)) {
+            bien.setTitle(title);
+        }
+        if (description!= null && description.length() > 0 && !Objects.equals(bien.getDescription(), description)) {
+            bien.setDescription(description);
         }
         if (price!= null  && !Objects.equals(bien.getPrice(), price)) {
             bien.setPrice(price);

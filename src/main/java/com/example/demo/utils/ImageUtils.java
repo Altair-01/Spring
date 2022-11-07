@@ -1,4 +1,4 @@
-package com.example.demo.Image;
+package com.example.demo.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

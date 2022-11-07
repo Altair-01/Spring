@@ -1,10 +1,6 @@
-package com.example.demo.Bien;
-
-import com.example.demo.Owner.Owner;
-import lombok.ToString;
+package com.example.demo.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 
 @Entity
@@ -89,6 +85,7 @@ public class Bien {
 
 
     public Bien() {
+        super();
     }
     public Bien(Long id, String title, String address, String description, Integer price, Integer bathroom, Integer bedroom, Double area, String url,Owner owner) {
         this.id = id;

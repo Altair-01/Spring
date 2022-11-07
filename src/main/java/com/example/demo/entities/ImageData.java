@@ -1,7 +1,6 @@
-package com.example.demo.Image;
+package com.example.demo.entities;
 
-import com.example.demo.Bien.Bien;
-import com.example.demo.Owner.Owner;
+import com.example.demo.entities.Bien;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

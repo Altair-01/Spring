@@ -1,6 +1,7 @@
-package com.example.demo.Owner;
+package com.example.demo.repositories;
 
-import com.example.demo.Bien.Bien;
+import com.example.demo.entities.Bien;
+import com.example.demo.entities.Owner;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -21,5 +22,7 @@ extends JpaRepository<Owner, Long> {
     List<Bien> getBiensByOwner(Long id);
     @Query("SELECT s FROM Owner s WHERE s.id=?1")
     Optional<Owner> findOwnerById(Long id);
+    @Query("SELECT s FROM Owner s WHERE s.fullName=?1")
+    Optional<Owner> findOwnerByName(String fullName);
 
 }

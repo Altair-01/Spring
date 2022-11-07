@@ -1,6 +1,8 @@
-package com.example.demo.Owner;
+package com.example.demo.controller;
 
-import com.example.demo.Bien.Bien;
+import com.example.demo.service.OwnerService;
+import com.example.demo.entities.Bien;
+import com.example.demo.entities.Owner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +35,10 @@ public class OwnerController {
         return ownerService.getOwners();
     }
 
+    @GetMapping("{fullName}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Owner> findOwnerByName(@PathVariable("fullName") String fullName){ return ownerService.findOwnerByName(fullName);}
+
     @GetMapping("/{id}/biens")
     @ResponseStatus(HttpStatus.OK)
     public List<Bien> getBiensByOwner(@PathVariable("id") Long id){
@@ -53,12 +59,19 @@ public class OwnerController {
     //    return ownerService.addBienToOwner(bienId,ownerId);
 
     //}
+    @DeleteMapping(path = "{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable("id") Long id){
+        ownerService.deleteOwner(id);
+    }
 
     @PutMapping(path = "{id}")
     @ResponseStatus(HttpStatus.OK)
     public void put(@PathVariable("id") Long id,
-                    @RequestParam(required = false) Integer telephone
+                    @RequestParam(required = false) Integer telephone,
+                    @RequestParam(required = false) String email,
+                    @RequestParam(required = false) String password
     ){
-        ownerService.updateOwner( id, telephone);
+        ownerService.updateOwner( id, telephone, email, password);
     }
 }

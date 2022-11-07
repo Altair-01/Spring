@@ -1,5 +1,6 @@
-package com.example.demo.Image;
+package com.example.demo.controller;
 
+import com.example.demo.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

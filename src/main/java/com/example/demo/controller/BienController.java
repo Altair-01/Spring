@@ -1,5 +1,7 @@
-package com.example.demo.Bien;
+package com.example.demo.controller;
 
+import com.example.demo.service.BienService;
+import com.example.demo.entities.Bien;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +29,10 @@ public class BienController {
         return bienService.getBiens();
     }
 
+    @GetMapping("/{title}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Bien> getBienByTitle(@PathVariable("title") String title) { return bienService.getBienByTitle(title);}
+
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<Bien> findBienById(@PathVariable("id") Long id){
@@ -37,18 +43,19 @@ public class BienController {
     public void addBien(@RequestBody Bien bien){
         bienService.addBien(bien);
     }
-    @DeleteMapping(path = "{id}")
+    @DeleteMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable ("id") Long id){
         bienService.deleteBien(id);
     }
-    @PutMapping(path = "{id}")
+    @PutMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void put(@PathVariable("id") Long id,
                     @RequestParam(required = false) String title,
-                    @RequestParam(required = false) Integer price
+                    @RequestParam(required = false) Integer price,
+                    @RequestParam(required = false) String description
     ){
-        bienService.updateBien( id, title, price);
+        bienService.updateBien( id, title,description, price);
     }
 
 }

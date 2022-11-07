@@ -1,7 +1,8 @@
-package com.example.demo.Owner;
+package com.example.demo.service;
 
-import com.example.demo.Bien.Bien;
-import com.example.demo.Bien.BienService;
+import com.example.demo.entities.Bien;
+import com.example.demo.entities.Owner;
+import com.example.demo.repositories.OwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,6 @@ public class OwnerService {
         this.bienService = bienService;
     }
 
-
     public List<Owner> getOwners() {
         return StreamSupport.stream(ownerRepository.findAll()
                 .spliterator(), false)
@@ -35,6 +35,8 @@ public class OwnerService {
                 new RuntimeException());
     }
     //Biens
+    public Optional<Owner> findOwnerByName(String fullName) {return ownerRepository.findOwnerByName(fullName);}
+
     public Optional<Owner> findOwnerById(Long id) {return ownerRepository.findOwnerById(id);}
 
     public List<Bien> getBiensByOwner(Long id) {
@@ -55,14 +57,27 @@ public class OwnerService {
         owner.addBien(bien);
         return owner;
     }*/
+    public void deleteOwner(Long ownerId){
+        boolean exists = ownerRepository.existsById(ownerId);
+        if(!exists){
+            throw new IllegalStateException("Bien avec id"+ownerId+"n'existe pas");
+        }
+        ownerRepository.deleteById(ownerId);}
+
     @Transactional
-    public void updateOwner(Long id, Integer telephone) {
+    public void updateOwner(Long id, Integer telephone, String email, String password) {
         Owner owner = ownerRepository.findById(id)
                 .orElseThrow(() -> new IllegalStateException("" +
                         "Ce proprietaire avec id:"+id+"n'existe pas"));
 
         if (telephone!= null  && !Objects.equals(owner.getTelephone(), telephone)) {
             owner.setTelephone(telephone);
+        }
+        if (email!= null && email.length() > 0 && !Objects.equals(owner.getEmail(), email)) {
+            owner.setEmail(email);
+        }
+        if (password!= null && password.length() > 0 && !Objects.equals(owner.getPassword(), password)) {
+            owner.setPassword(password);
         }
     }
 }

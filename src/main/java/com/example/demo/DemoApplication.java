@@ -1,9 +1,12 @@
 package com.example.demo;
 
+import com.example.demo.entities.Bien;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -16,14 +19,22 @@ import java.util.Arrays;
 @SpringBootApplication
 @EnableSwagger2
 @RestController
-public class DemoApplication {
+public class DemoApplication implements CommandLineRunner {
+
+	@Autowired
+	private RepositoryRestConfiguration repositoryRestConfiguration;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Bean
+	@Override
+	public void run(String... args) throws Exception {
+		repositoryRestConfiguration.exposeIdsFor(Bien.class);
+	}
 
+	@Bean
 	public CorsFilter corsFilter(){
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);

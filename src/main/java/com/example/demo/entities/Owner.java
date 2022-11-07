@@ -1,6 +1,6 @@
-package com.example.demo.Owner;
+package com.example.demo.entities;
 
-import com.example.demo.Bien.Bien;
+import com.example.demo.entities.Bien;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,18 +28,16 @@ public class Owner {
             updatable = false
     )
     private Long id;
+
+
+
     @Column(
-            name="first_name",
+            name="full_name",
             nullable = false,
             columnDefinition = "TEXT"
     )
-    private String firstName;
-    @Column(
-            name="last_name",
-            nullable = false,
-            columnDefinition = "TEXT"
-    )
-    private String lastName;
+    private String fullName;
+
     @Column(
             name="email",
             nullable = false
@@ -64,21 +62,23 @@ public class Owner {
     public Owner() {
     }
 
-    public Owner(Long id, String firstName, String lastName, String email, String password, Integer telephone) {
+    public Owner(Long id, String fullName, String email, String password, Integer telephone, List<Bien> biens) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.telephone = telephone;
+        this.biens = biens;
     }
-    public Owner( String firstName, String lastName, String email, String password, Integer telephone) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+
+    public Owner( String fullName, String email, String password, Integer telephone, List<Bien> biens) {
+        this.fullName = fullName;
         this.email = email;
         this.password = password;
         this.telephone = telephone;
+        this.biens = biens;
     }
+
 
     public Long getId() {
         return id;
@@ -88,21 +88,15 @@ public class Owner {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getEmail() {
         return email;
@@ -133,8 +127,7 @@ public class Owner {
     public String toString() {
         return "Owner{" +
                 "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", telephone=" + telephone +
