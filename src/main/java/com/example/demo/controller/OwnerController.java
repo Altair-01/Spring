@@ -39,6 +39,10 @@ public class OwnerController {
     @ResponseStatus(HttpStatus.OK)
     public Optional<Owner> findOwnerByName(@PathVariable("fullName") String fullName){ return ownerService.findOwnerByName(fullName);}
 
+    @GetMapping("{username}")
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Owner> findOwnerByUsername(@PathVariable("username") String username){ return ownerService.findOwnerByUsername(username);}
+
     @GetMapping("/{id}/biens")
     @ResponseStatus(HttpStatus.OK)
     public List<Bien> getBiensByOwner(@PathVariable("id") Long id){

@@ -1,5 +1,5 @@
 
-
+<h1>{{ title }}</h1>
 <div class="card my-5">
     <div class="card-body">
       <table class="table table-bordered table-striped">
@@ -22,7 +22,7 @@
             <td>{{ bien.description }}</td>
             <td>{{ bien.price }}</td>
             <td><a href={{bien.url}}>{{ bien.url }}</a></td>
-            <td>{{ bien.owner.firstName }} {{ bien.owner.lastName }}</td>
+            <td>{{ bien.owner.fullName }}</td>
           </tr>
         </tbody>
       </table>

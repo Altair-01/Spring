@@ -39,6 +39,13 @@ public class Owner {
     private String fullName;
 
     @Column(
+            name="username",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
+    private String username;
+
+    @Column(
             name="email",
             nullable = false
     )
@@ -62,17 +69,19 @@ public class Owner {
     public Owner() {
     }
 
-    public Owner(Long id, String fullName, String email, String password, Integer telephone, List<Bien> biens) {
+    public Owner(Long id, String fullName, String username, String email, String password, Integer telephone, List<Bien> biens) {
         this.id = id;
         this.fullName = fullName;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.telephone = telephone;
         this.biens = biens;
     }
 
-    public Owner( String fullName, String email, String password, Integer telephone, List<Bien> biens) {
+    public Owner( String fullName,String username, String email, String password, Integer telephone, List<Bien> biens) {
         this.fullName = fullName;
+        this.username = username;
         this.email = email;
         this.password = password;
         this.telephone = telephone;
@@ -97,6 +106,13 @@ public class Owner {
     }
 
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getEmail() {
         return email;
@@ -128,6 +144,7 @@ public class Owner {
         return "Owner{" +
                 "id=" + id +
                 ", fullName='" + fullName + '\'' +
+                ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", telephone=" + telephone +

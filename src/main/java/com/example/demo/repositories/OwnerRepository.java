@@ -22,6 +22,8 @@ extends JpaRepository<Owner, Long> {
     List<Bien> getBiensByOwner(Long id);
     @Query("SELECT s FROM Owner s WHERE s.id=?1")
     Optional<Owner> findOwnerById(Long id);
+    @Query("SELECT s FROM Owner s WHERE s.username=?1")
+    Optional<Owner> findOwnerByUsername(String username);
     @Query("SELECT s FROM Owner s WHERE s.fullName=?1")
     Optional<Owner> findOwnerByName(String fullName);
 

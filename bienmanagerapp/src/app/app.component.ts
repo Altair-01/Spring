@@ -9,6 +9,7 @@ import { BienService } from './bien.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title='Angular-SpringBoot';
   public biens: Bien[] | any;
 
   
@@ -30,3 +31,4 @@ export class AppComponent implements OnInit {
     }
   }
 
+//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

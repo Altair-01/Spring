@@ -36,6 +36,8 @@ public class OwnerService {
     }
     //Biens
     public Optional<Owner> findOwnerByName(String fullName) {return ownerRepository.findOwnerByName(fullName);}
+    public Optional<Owner> findOwnerByUsername(String username) {return ownerRepository.findOwnerByUsername(username);}
+
 
     public Optional<Owner> findOwnerById(Long id) {return ownerRepository.findOwnerById(id);}
 
@@ -44,9 +46,9 @@ public class OwnerService {
     }
 
     public void addNewOwner(Owner owner) {
-        Optional<Owner> ownerOptional = ownerRepository.findOwnerByTelephone(owner.getTelephone());
+        Optional<Owner> ownerOptional = ownerRepository.findOwnerByUsername(owner.getUsername());
         if(ownerOptional.isPresent()){
-            throw new IllegalStateException("Ce proprietaire existe");
+            throw new IllegalStateException("Ce nom d'utilisateur existe déjà");
         }
         ownerRepository.save(owner);
     }
