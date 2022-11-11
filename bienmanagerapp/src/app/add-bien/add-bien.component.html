@@ -1,0 +1,47 @@
+<div class="container">
+    <div>
+        <h2>Ajouter un bien</h2>
+    </div>
+
+    <form>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label> ID BIEN </label>
+            <input type="text" [(ngModel)]="newBien.id" name="bien_id" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label> Titre </label>
+            <input type="text" [(ngModel)]="newBien.title" name="bien_id" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label> Adresse </label>
+            <input type="text" [(ngModel)]="newBien.address" name="bien_id" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label> Description</label>
+            <input type="text" [(ngModel)]="newBien.description" name="bien_id" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label> Prix </label>
+            <input type="text" [(ngModel)]="newBien.price" name="bien_id" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label> Nombre de chambre </label>
+            <input type="text" [(ngModel)]="newBien.bedroom" name="bien_id" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label> salle de bain</label>
+            <input type="text" [(ngModel)]="newBien.bathroom" name="bien_id" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label> Surface totale </label>
+            <input type="text" [(ngModel)]="newBien.area" name="bien_id" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label> lien photo </label>
+            <input type="text" [(ngModel)]="newBien.url" name="bien_id" class="form-control">
+        </div>
+        <div class="mt-2">
+            <button type="submit" (click)="addBien()" class="btn btn-success"> Ajouter</button>
+        </div>
+    </form>
+</div>

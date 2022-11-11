@@ -19,6 +19,7 @@ describe('AppComponent', () => {
   it(`should have as title 'bienmanagerapp'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
+    //ici on n'avait pas app.title
     expect(app.title).toEqual('bienmanagerapp');
   });
 

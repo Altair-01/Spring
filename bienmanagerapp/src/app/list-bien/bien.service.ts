@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient } from '@angular/common/http';
-import { Bien } from "./bien";
+import { Bien } from "../model/bien.model";
 import { environment } from "src/environments/environment";
+
 
 @Injectable({
     providedIn:'root'

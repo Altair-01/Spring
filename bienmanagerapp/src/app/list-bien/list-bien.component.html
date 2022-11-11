@@ -1,0 +1,30 @@
+
+<h1>{{ title }}</h1>
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Description</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Url</th>
+            <th scope="col">proprietaire du bien</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bien of biens">
+            <td>{{ bien.id }}</td>
+            <td>{{ bien.title }}</td>
+            <td>{{ bien.address }}</td>
+            <td>{{ bien.description }}</td>
+            <td>{{ bien.price }}</td>
+            <td><a href={{bien.url}}>{{ bien.url }}</a></td>
+            <td>{{ bien.owner.fullName }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
