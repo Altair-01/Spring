@@ -45,12 +45,13 @@ public class OwnerService {
         return ownerRepository.getBiensByOwner(id);
     }
 
-    public void addNewOwner(Owner owner) {
+    public Owner addNewOwner(Owner owner) {
         Optional<Owner> ownerOptional = ownerRepository.findOwnerByUsername(owner.getUsername());
         if(ownerOptional.isPresent()){
             throw new IllegalStateException("Ce nom d'utilisateur existe déjà");
         }
-        ownerRepository.save(owner);
+        return ownerRepository.save(owner);
+
     }
 
     /*public Owner addBienToOwner(Long bienId, Long ownerId){

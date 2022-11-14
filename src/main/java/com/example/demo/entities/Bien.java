@@ -79,7 +79,7 @@ public class Bien {
     private String url;
 
     //J'ajoute les relations entre les entités
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "owner_id",referencedColumnName = "owner_id")
     private Owner owner;
 
@@ -97,7 +97,6 @@ public class Bien {
         this.bedroom = bedroom;
         this.area = area;
         this.url = url;
-        this.owner = owner;
 
     }
 
@@ -194,9 +193,7 @@ public class Bien {
         return owner;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
-    }
+
 
 
 
@@ -212,7 +209,6 @@ public class Bien {
                 ", bedroom=" + bedroom +
                 ", area=" + area +
                 ", url='" + url + '\'' +
-                "owner=" + owner +
                 '}';
     }
 }

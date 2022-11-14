@@ -1,13 +1,13 @@
 export class Bien {
     id: any;
-    address?:string;
-    description?: string;
+    address?:any;
+    description?: any;
     price?:number;
     bathroom?:number;
     bedroom?:number;
     area:any;
-    title?: string;
-    url?:string;
-    owner:any;
+    title?: any;
+    url?:any;
+    owner_id:any;
     }
     

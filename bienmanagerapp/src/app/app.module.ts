@@ -5,18 +5,22 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { BienService } from './list-bien/bien.service';
+import { BienService } from './services/bien.service';
 import { AddBienComponent } from './add-bien/add-bien.component';
 import { BiensComponent } from './biens/biens.component';
-import { ListBienComponent } from './list-bien/list-bien.component';
 import { FormsModule } from '@angular/forms';
+import { OwnerService } from './services/owner.service';
+import { AddOwnerComponent } from './add-owner/add-owner.component';
+import { OwnersComponent } from './owners/owners.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BiensComponent,
     AddBienComponent,
-    ListBienComponent
+    BiensComponent,
+    AddOwnerComponent,
+    OwnersComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +28,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [BienService],
+  providers: [BienService, OwnerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

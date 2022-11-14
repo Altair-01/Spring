@@ -38,7 +38,7 @@ public class BienController {
     public Optional<Bien> findBienById(@PathVariable("id") Long id){
         return bienService.findBienById(id);
     }
-    @PostMapping
+    @PostMapping("/addBien")
     @ResponseStatus(HttpStatus.CREATED)
     public void addBien(@RequestBody Bien bien){
         bienService.addBien(bien);

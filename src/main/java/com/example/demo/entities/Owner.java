@@ -63,7 +63,7 @@ public class Owner {
     private Integer telephone;
 
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner")
     private List<Bien> biens;
 
     public Owner() {

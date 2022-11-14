@@ -48,5 +48,6 @@ public class DemoApplication implements CommandLineRunner {
 		return new CorsFilter(urLBasedCorsConfigurationSource);
 	}
 
+
 }
 

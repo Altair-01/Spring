@@ -3,8 +3,10 @@ package com.example.demo.controller;
 import com.example.demo.service.OwnerService;
 import com.example.demo.entities.Bien;
 import com.example.demo.entities.Owner;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,9 +52,8 @@ public class OwnerController {
     }
 
     @PostMapping("/addOwner")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addNewOwner(@RequestBody Owner owner) {
-        ownerService.addNewOwner(owner);
+    public ResponseEntity<Owner> addNewOwner(@RequestBody Owner owner) {
+       return ResponseEntity.ok().body(ownerService.addNewOwner(owner));
     }
 
     ///IL ME FAUT FAIRE CETTE FUCKING DTO SHIT
